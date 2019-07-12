@@ -14,3 +14,13 @@ Open `Info` view, select `File`, `Export` and select `OBJ Batch Export`.
 
 The file modal will be shown, select a folder in which exported files will be stored.
 
+## Advantage Usage
+
+It is able to use this batch export obj on a remote server; however, Blender must be installed on the remote server first before running the script.
+
+```bash
+OBJ_EXPORT_PATH=EXPORT_PATH blender -b MODEL_FILE_PATH --python batchexport_cli.py
+```
+
+The only thing you have to do here is change variables `EXPORT_PATH` and `MODEL_FILE_PATH` by your own.
+
