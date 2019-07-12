@@ -29,7 +29,6 @@ class BatchExport(bpy.types.Operator):
 
     filepath = bpy.props.StringProperty(
             name="File Path",
-            description="Filepath used for exporting the file",
             maxlen=1024,
             subtype="DIR_PATH",
             )
