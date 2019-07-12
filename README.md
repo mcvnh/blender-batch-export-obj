@@ -14,7 +14,7 @@ Open `Info` view, select `File`, `Export` and select `OBJ Batch Export`.
 
 The file modal will be shown, select a folder in which exported files will be stored.
 
-## Advantage Usage
+## Advanced Usage
 
 It is able to use this batch export obj on a remote server; however, Blender must be installed on the remote server first before running the script.
 
