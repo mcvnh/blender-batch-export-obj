@@ -47,7 +47,6 @@ class BatchExport(bpy.types.Operator):
             # make sure that we only export meshes
             if ob.type == 'MESH':
                 # export the currently selected object to its own file based on its name
-                print(self.filepath)
                 bpy.ops.export_scene.obj(filepath=os.path.join(self.filepath, ob.name + '.obj'), use_selection=True)
 
             # deselect the object and move on to another if any more are left
