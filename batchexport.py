@@ -6,17 +6,18 @@ bl_info = {
     "name": "Batch Export",
     "category": "Import-Export",
     "version": (1, 0),
+    "blender": (2, 8, 0),
     "location": "Info > File > Export > OBJ Batch Export",
     "author": "Anh Mac"
 }
 
 def register():
     bpy.utils.register_class(BatchExport)
-    bpy.types.INFO_MT_file_export.append(menu_func)
+    bpy.types.TOPBAR_MT_file_export.append(menu_func)
 
 def unregister():
     bpy.utils.unregister_class(BatchExport)
-    bpy.types.INFO_MT_file_export.remove(menu_func)
+    bpy.types.TOPBAR_MT_file_export.remove(menu_func)
 
 def menu_func(self, context):
     self.layout.operator(BatchExport.bl_idname)
@@ -40,8 +41,8 @@ class BatchExport(bpy.types.Operator):
         # loop through all the objects in the scene
         for ob in context.scene.objects:
             # make the current object active and select it
-            context.scene.objects.active = ob
-            ob.select = True
+            context.view_layer.objects.active = ob
+            ob.select_set(state=True)
 
             # make sure that we only export meshes
             if ob.type == 'MESH':
@@ -49,8 +50,8 @@ class BatchExport(bpy.types.Operator):
                 bpy.ops.export_scene.obj(filepath=os.path.join(self.filepath, ob.name + '.obj'), use_selection=True)
 
             # deselect the object and move on to another if any more are left
-            ob.select = False
-
+            ob.select_set(state=False)
+ 
         return {'FINISHED'}
 
     def invoke(self, context, event):
@@ -61,4 +62,3 @@ class BatchExport(bpy.types.Operator):
 
 if __name__ == "__main__":
     register()
-
